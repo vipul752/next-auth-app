@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const router = useRouter();
 
-  const onLogin = async (e) => {
+  const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post("/api/user/login", user);

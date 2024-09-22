@@ -31,7 +31,7 @@ export default function SignupPage() {
     }, 1000);
   }, []);
 
-  const onSignup = async (e) => {
+  const onSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post("/api/user/signup", user);
@@ -66,7 +66,7 @@ export default function SignupPage() {
         <h1 className="text-4xl font-bold text-center text-gray-100 mb-8">
           Create an Account
         </h1>
-        <form>
+        <form onSubmit={onSignup}>
           <div className="mb-6">
             <label
               htmlFor="username"
@@ -119,7 +119,6 @@ export default function SignupPage() {
             />
           </div>
           <button
-            onClick={onSignup}
             type="submit"
             className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transform hover:translate-y-1 hover:scale-105 transition-all duration-300 text-lg font-semibold"
           >
