@@ -5,7 +5,11 @@ export function getDataforToken(req: NextRequest) {
   try {
     const token = req.cookies.get("token")?.value || "";
 
-    const decodedData = jwt.verify(token, process.env.Secret);
+    const secret = process.env.Secret;
+    if (!secret) {
+      throw new Error("Secret is not defined");
+    }
+    const decodedData = jwt.verify(token, secret) as jwt.JwtPayload;
 
     return decodedData.id;
   } catch (error) {
